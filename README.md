@@ -6,8 +6,9 @@ npm run dev
 ```
 
 ###Stop
+```
 Ctrl+C to stop 
-
+```
 ###test
 ```bash
 npm run test
