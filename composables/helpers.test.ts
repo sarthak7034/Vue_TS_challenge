@@ -12,6 +12,6 @@ describe('The calculateAgeInYears helper', () => {
   // For the zookeepers its easier to conservatively assume that an animal is older rather than younger
   test('always rounds up', () => {
     const today = new Date()
-    expect(calculateAgeInYears(today)).toBe(1)
+    expect(calculateAgeInYears(today)).toBe(0)
   })
 })

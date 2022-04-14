@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import type { PropType } from 'vue';
-import type { Animal } from '../types';
-import { calculateAgeInYears } from '../composables/helpers';
+import { computed } from "vue";
+import type { PropType } from "vue";
+import type { Animal } from "../types";
+import { calculateAgeInYears } from "../composables/helpers";
+import animals from "~~/server/api/animals";
+
+
 
 const props = defineProps({
   animals: {
@@ -14,8 +17,11 @@ const props = defineProps({
 const animalsSortedByName = computed(() =>
   props.animals
     .slice()
-    .sort((animalA, animalB) => animalA.weight - animalB.weight)
+    .sort((animalA, animalB) => animalA.name.localeCompare(animalB.name))
 );
+
+  
+
 </script>
 
 <template>
@@ -23,6 +29,7 @@ const animalsSortedByName = computed(() =>
     <thead>
       <tr>
         <th>Index</th>
+        <th>Name</th>
         <th>Species</th>
         <th>Gender</th>
         <th>Age (yrs)</th>
@@ -32,12 +39,13 @@ const animalsSortedByName = computed(() =>
     <tbody>
       <tr
         v-for="(
-          { id, species, gender, birthdate, weight }, animalIndex
+          { id, name, species, gender, birthdate, weight }, animalIndex
         ) in animalsSortedByName"
         :key="id"
         class="hover:bg-gray-200"
       >
         <td>{{ animalIndex + 1 }}</td>
+        <td>{{ name }}</td>
         <td>{{ species }}</td>
         <td>{{ gender }}</td>
         <td>{{ birthdate }}</td>

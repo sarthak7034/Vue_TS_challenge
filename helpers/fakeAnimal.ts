@@ -12,6 +12,7 @@ export const fakeAnimal = (): Animal => {
     id: faker.datatype.uuid(),
     name: faker.name.firstName(gender as GenderType),
     species: faker.animal.type(),
+    gender,
     birthdate: faker.date.past(25),
     weight: faker.datatype.float({
       min: 20,
@@ -23,7 +24,6 @@ export const fakeAnimal = (): Animal => {
       max: 4,
       precision: 0.01,
     }),
-    gender,
     favouriteFruit,
   }
 }
